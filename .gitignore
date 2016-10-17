@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Evis.VMS.Business/bin/Debug
+/Evis.VMS.Business/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Evis.VMS.Business/obj/Debug
+/Evis.VMS.Data/bin/Debug
+/Evis.VMS.Data/obj/Debug
+/Evis.VMS.Data.Model/bin/Debug
+/Evis.VMS.Data.Model/obj/Debug
+/Evis.VMS.UI/bin
+/Evis.VMS.UI/obj/Debug
+/Evis.VMS.Utilities/bin/Debug
+/Evis.VMS.Utilities/obj/Debug
