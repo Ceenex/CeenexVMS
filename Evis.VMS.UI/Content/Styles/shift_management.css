@@ -1,0 +1,173 @@
+﻿#ccanvas {
+    min-width: 575px !important;
+    background: white;
+}
+
+  #ccanvas * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+div.timelines {
+    margin: 5px 0 0 18px;
+    background-color: #fff;
+    border-radius: 3px;
+    float: right;
+    color: #666;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+ div.timelines div:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+
+div.timelines div {
+    float: left;
+    border: 1px solid #d2d2d2;
+    margin-right: -1px;
+    cursor: pointer;
+    padding: 6px 12px 6px 12px;
+    font-size: 13px;
+}
+
+
+div.timelines div.selected {
+    background-color: #888;
+    position: relative;
+    color: #fff;
+    border-color: #666;
+    text-shadow: none;
+}
+
+div.timelines div.last {
+    border-right: 1px solid #d2d2d2;
+    border-radius: 0 3px 3px 0;
+}
+
+
+#ccanvas .date table.timeline {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: #F1F1F1;
+    border: 1px solid #d7d7d7;
+    display: none;
+}
+
+#ccanvas .date #tweek td {
+    font-size: 12px !important;
+    /* border: 1px solid #d7d7d7; */
+}
+
+#ccanvas .date table.timeline td.daterange {
+    width: 150px !important;
+    text-align: left !important;
+    padding-left: 5px;
+    background: none !important;
+    margin-left: none;
+}
+
+#ccanvas .date table.timeline td {
+    color: #666;
+    font-size: 13px;
+    font-face: Arial;
+    text-align: center;
+    background: url(/Images/split.png) no-repeat 0 0;
+    margin-left: 1px;
+    padding: 5px 5px 5px 5px;
+}
+
+td {
+    font-size: 13px;
+    /* font-family: "Roboto", tahoma, arial, Verdana; */
+}
+
+
+#ccanvas .date table.timeline td.shiftname {
+    width: 100px !important;
+    text-align: left !important;
+    padding-left: 15px;
+    background: none !important;
+    margin-left: none;
+}
+
+
+#ccanvas #scheduler {
+    margin-top: -1px;
+    overflow: auto;
+}
+
+
+#ccanvas #scheduler table.weeklist {
+    border: 1px solid #d7d7d7;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#ccanvas #scheduler table.weeklist td.wemp {
+    width: 150px;
+    border-bottom: 1px solid #d7d7d7;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+#ccanvas #scheduler table.weeklist td {
+    height: 20px;
+    margin: 0px;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+#ccanvas #scheduler table.weeklist td.wemp img {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+#ccanvas #scheduler table.weeklist img.usr {
+    cursor: move;
+}
+
+a img, img {
+    border: none;
+}
+
+#ccanvas #scheduler table.weeklist td.wemp span {
+    font-size: 13px;
+    font-face: Arial;
+    color: #666;
+}
+#ccanvas .jump, #cpanel .jump {
+    cursor: pointer;
+}
+
+#ccanvas #scheduler table.weeklist td.shiftNameCol {
+    vertical-align: top;
+    height: 30px;
+    width: 100px !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#ccanvas #scheduler table.weeklist td.shiftCell {
+    vertical-align: top;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px solid #d7d7d7;
+}
+
+#ccanvas #scheduler table.weeklist td.day {
+    vertical-align: top;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div#scheduler td.wk {
+    cursor: pointer;
+}

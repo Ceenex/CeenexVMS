@@ -1,0 +1,389 @@
+﻿
+<script src="~/Content/Scripts/plugins/Chart.min.js"></script>
+<script src="~/Content/Scripts/plugins/curvedLines.js"></script>
+<script src="~/Content/Scripts/plugins/jquery.flot.js"></script>
+<script src="~/Content/Scripts/plugins/daterangepicker.js"></script>
+<script src="~/Content/Scripts/plugins/jquery.flot.time.js"></script>
+<script src="~/Content/Scripts/plugins/moment.min.js"></script>
+<div class="row top_tiles">
+    @if (@Session["DashboardData"] != null && @Session["UserSession"] != null)
+    {
+
+        var userSessionData = (Evis.VMS.UI.ViewModel.UserSessionDataVM)Session["UserSession"];
+
+
+        var DashboardData = (Evis.VMS.UI.ViewModel.DashboardVM)Session["DashboardData"];
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats box1">
+                <a href="javascript:void(0)" id="lnkVisitorCheckIn">
+                    <div class="icon" style="color: #22A7F0"><i class="fa fa-user-plus fa-1"></i></div>
+
+
+                    <div class="count">@DashboardData.CheckInCount</div>
+
+
+                    <h3>Checked-In visitors</h3>
+                    <p>checked-In visitors</p>
+                </a>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats box2">
+                <a href="javascript:void(0)" id="lnkTotalVisitor">
+                    <div class="icon" style="color: #FABE28"><i class="fa fa-users fa-1"></i></div>
+                    <div class="count">@DashboardData.VisitorsCount</div>
+                    <h3>Visitors</h3>
+                    <p>Total visitors current day</p>
+                </a>
+            </div>
+        </div>
+        if (userSessionData.UserRole != Evis.VMS.UI.ViewModel.RoleType.Security)
+        {
+            if (userSessionData.UserRole != Evis.VMS.UI.ViewModel.RoleType.SuperVisor)
+            {
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats box3">
+                        <a href="javascript:void(0)" id="lnkBuilding">
+                            <div class="icon" style="color: #1ABC9C"><i class="fa fa-building-o"></i></div>
+                            <div class="count">@DashboardData.BuldingCount</div>
+                            <h3>Building</h3>
+                            <p>Total building</p>
+                        </a>
+                    </div>
+                </div>
+            }
+
+
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats box4">
+                    <a href="javascript:void(0)" id="lnkGates">
+                        <div class="icon" style="color: #fb927d"><i class="fa fa-outdent"></i></div>
+                        <div class="count">@DashboardData.GatesCount</div>
+                        <h3>Gates</h3>
+                        <p>Total gates</p>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="dashboard_graph x_panel">
+            <div class="row x_title">
+                <div class="col-md-6">
+                    <h3>Visitor Count <small>Graph </small></h3>
+                </div>
+            </div>
+
+            <div class="x_content">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="demo-container" style="height:250px">
+                        <div id="placeholder3xx3" class="demo-placeholder" style="width: 100%; height: 250px; padding: 0px; position: relative;">
+                            @*<div class="legend">
+                                        <div style="position: absolute; width: 76px; height: 15px; top: 13px; right: 13px; opacity: 0.85; background-color: rgb(255, 255, 255);"> </div>
+                                        <table style="position:absolute;top:13px;right:13px;font-size:smaller;color:#545454">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="legendColorBox">
+                                                        <div style="border:1px solid #ccc;padding:1px">
+                                                            <div style="width:4px;height:0;border:5px solid rgb(38,185,154);overflow:hidden"></div>
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="dashboard_graph x_panel">
+            <div class="x_title">
+                <h2>Daily Shift Details</h2>
+                <div class="clearfix"></div>
+            </div>
+
+            <table class="table jambo_table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 25%"> <a href="#" onclick="DataGrid.Sort('UserName')" class="UserName">Security Name</a> </th>
+                        <th style="width: 20%"> <a href="#" onclick="DataGrid.Sort('BuildingName')" class="BuildingName">Building Name</a></th>
+                        <th style="width: 25%"><a href="#" onclick="DataGrid.Sort('GateName')" class="GateName">Gate Name</a></th>
+                        <th style="width: 25%"><a href="#" onclick="DataGrid.Sort('ShiftName')" class="ShiftName">Shift Name</a></th>
+
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:DataGrid.DataRows">
+                    <tr>
+                        <td scope="row" data-bind="text:$index() +1"></td>
+                        <td data-bind="text: UserName"></td>
+                        <td data-bind="text:BuildingName"></td>
+                        <td data-bind="text:GateName"></td>
+                        <td data-bind="text:ShiftName"></td>
+                    </tr>
+                </tbody>
+                <tr class="blank_row" data-bind="visible: (DataGrid.DataRows().length == 0)">
+                    <td colspan="10" style="text-align:center;">
+                        No data found.
+                    </td>
+                </tr>
+            </table>
+            @Html.Partial("_Pager")
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var myBtn = document.getElementById('menu_toggle');
+
+    //add event listener
+    myBtn.addEventListener('click', function (event) {
+        loadGraph();
+
+    });
+    window.onresize = loadGraph;
+    function loadGraph() {
+        {
+            var graphData;
+            var fromDate = new Date();
+            var toDate = new Date();
+            var arr = [];
+            // evt.preventDeafult();
+            AjaxCall('../Api/DashBoard/LoadGraph', null, 'GET', function (data) {
+                //   debugger;
+                //$.each(data, function (inx, val) {
+                //    var obj = [];
+                //    obj[0] = val.Date;
+                //    obj[1] = val.Count;
+                //    // obj.label = val.label;
+                //    arr.push(obj);
+                //});
+                graphData = data;
+                var dataArray = new Array(graphData.length);
+                for (var i = 0; i < graphData.length; i++) {
+                    var dataValue = new Array(2);
+                    dataValue[0] = gd(graphData[i].m_Item2);
+                    dataValue[1] = graphData[i].m_Item1;
+                    dataArray[i] = dataValue;
+                }
+
+                arr = dataArray;
+                var dataset = [
+               {
+                   label: "Visitors",
+                   data: arr,
+                   color: "#FF0000",
+                   points: { fillColor: "#FF0000", show: true },
+                   lines: { show: true }
+               }
+
+                ];
+                var options = {
+                    series: {
+                        curvedLines: {
+                            apply: true,
+                            active: true,
+                            monotonicFit: true
+                        }
+                    },
+                    responsive: true,
+                    xaxes: [
+                   {
+                       mode: "time",
+                       timeformat: "%d/%m",
+                       tickSize: [3, "day"],
+                       tickLength: 1,
+
+                       color: "black",
+                       axisLabel: "Date",
+                       //  axisLabelUseCanvas: true,
+                       axisLabelFontSizePixels: 12,
+                       axisLabelFontFamily: 'Verdana, Arial',
+                       axisLabelPadding: 0
+                   }],
+                    yaxis: {
+
+                        tickDecimals: 0,
+                        axisLabel: "",
+
+                    },
+                    colors: ["#26B99A"],
+                    legend: {
+                        noColumns: 0,
+                        labelBoxBorderColor: "#000000",
+                        position: "nw"
+                    },
+                    grid: {
+                        borderWidth: {
+                            top: 0,
+                            right: 1,
+                            bottom: 1,
+                            left: 1
+                        },
+                        borderColor: {
+                            bottom: "#7F8790",
+                            left: "#7F8790"
+                        },
+                        hoverable: true,
+                        //  borderWidth: 3,
+                        mouseActiveRadius: 50,
+                        // backgroundColor: { colors: ["#ffffff", "#EDF5FF"] },
+                        //  axisMargin: 20
+                    }
+                };
+                var plot = $.plot($("#placeholder3xx3"), dataset, options);
+            });
+
+
+
+
+        }
+
+
+
+        var dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+
+
+
+        //  var plot = $.plot($("#placeholder3xx3"), dataset, options);
+
+        function gd(date) {
+            //alert(date);
+            var arrDate = date.split('/');
+            // userData.DOB = ([initial[1], initial[0], initial[2]].join('/'));
+            return new Date(arrDate[2], arrDate[1] - 1, arrDate[0]).getTime();
+        }
+    }
+    $(document).ready(function () {
+        //random data
+        loadGraph();
+        //{
+        //    var graphData;
+        //    var fromDate = new Date();
+        //    var toDate = new Date();
+        //    var arr = [];
+        //    // evt.preventDeafult();
+        //    AjaxCall('../Api/DashBoard/LoadGraph', null, 'GET', function (data) {
+        //        //   debugger;
+        //        //$.each(data, function (inx, val) {
+        //        //    var obj = [];
+        //        //    obj[0] = val.Date;
+        //        //    obj[1] = val.Count;
+        //        //    // obj.label = val.label;
+        //        //    arr.push(obj);
+        //        //});
+        //        graphData = data;
+        //        var dataArray = new Array(graphData.length);
+        //        for (var i = 0; i < graphData.length; i++) {
+        //            var dataValue = new Array(2);
+        //            dataValue[0] = gd(graphData[i].m_Item2);
+        //            dataValue[1] = graphData[i].m_Item1;
+        //            dataArray[i] = dataValue;
+        //        }
+
+        //        arr = dataArray;
+        //        var dataset = [
+        //       {
+        //           label: "Visitors",
+        //           data: arr,
+        //           color: "#FF0000",
+        //           points: { fillColor: "#FF0000", show: true },
+        //           lines: { show: true }
+        //       }
+
+        //        ];
+        //        var options = {
+        //            series: {
+        //                curvedLines: {
+        //                    apply: true,
+        //                    active: true,
+        //                    monotonicFit: true
+        //                }
+        //            },
+        //            responsive: true,
+        //            xaxes: [
+        //           {
+        //               mode: "time",
+        //               timeformat: "%m/%d",
+        //               tickSize: [1, "day"],
+        //               tickLength: 1,
+
+        //               color: "black",
+        //               axisLabel: "Date",
+        //               //  axisLabelUseCanvas: true,
+        //               axisLabelFontSizePixels: 12,
+        //               axisLabelFontFamily: 'Verdana, Arial',
+        //               axisLabelPadding: 0
+        //           }],
+        //            yaxis: {
+
+        //                tickDecimals: 0,
+        //                axisLabel: "",
+
+        //            },
+        //            colors: ["#26B99A"],
+        //            legend: {
+        //                noColumns: 0,
+        //                labelBoxBorderColor: "#000000",
+        //                position: "nw"
+        //            },
+        //            grid: {
+        //                borderWidth: {
+        //                    top: 0,
+        //                    right: 1,
+        //                    bottom: 1,
+        //                    left: 1
+        //                },
+        //                borderColor: {
+        //                    bottom: "#7F8790",
+        //                    left: "#7F8790"
+        //                },
+        //                hoverable: true,
+        //                //  borderWidth: 3,
+        //                mouseActiveRadius: 50,
+        //                // backgroundColor: { colors: ["#ffffff", "#EDF5FF"] },
+        //                //  axisMargin: 20
+        //            }
+        //        };
+        //        var plot = $.plot($("#placeholder3xx3"), dataset, options);
+        //    });
+
+
+
+
+        //}
+
+
+
+        //var dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+
+
+
+        ////  var plot = $.plot($("#placeholder3xx3"), dataset, options);
+
+        //function gd(date) {
+        //    //alert(date);
+        //    var arrDate = date.split('/');
+        //    // userData.DOB = ([initial[1], initial[0], initial[2]].join('/'));
+        //    return new Date(arrDate[2], arrDate[1] - 1, arrDate[0]).getTime();
+        //}
+
+
+    });
+</script>
+
+

@@ -1,0 +1,142 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#" class="a-color">Administration</a></li>
+    <li><a href="#" class="a-color">Shifts Assignment</a></li>
+</ol>
+<div class="row">
+    <div class="col-md-4 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Shift Assignment</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content leftcontent">
+                <form class="form-horizontal form-label-left input_mask">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Building Name <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select class="form-control Fieldfocus" data-bind="options: Buildings, optionsText: 'Name' ,optionsValue: 'Id', value: BuildingId, optionsCaption: '-- Select Building --',event:{ change: GetGates()}"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gate No <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select class="form-control Fieldfocus" data-bind="options: Gates, optionsText: 'Name' ,optionsValue: 'Id', value: GateId, optionsCaption: '-- Select Gate --',event:{ change: GetUsers()}"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Security Person <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" >
+                            <select class="form-control Fieldfocus" id="SecurityPerson" data-bind="options: Users, optionsText: 'Name' ,optionsValue: 'Id', value: UserId, optionsCaption: '-- Select Security --'"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Name <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select class="form-control Fieldfocus" data-bind="options: Shift, optionsText: 'Name' ,optionsValue: 'Id', value:ShitfId, optionsCaption: '-- Select Shift --'"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date<span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="dateFrom" type="text" data-bind="value: FromDate" class="form-control Fieldfocus" placeholder="[From Date]" />
+                            <span class="favwhite fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date<span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="dateTo" type="text" data-bind="value: ToDate" class="form-control Fieldfocus" placeholder="[To Date]" />
+                            <span class="favwhite fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary" data-bind="click: ResetShiftAssignment.bind()">Reset <i class="fa fa-refresh"></i></button>
+                            <button type="button" class="btn btn-success" data-bind="click: SaveShiftAssignment.bind()" id="btnSaveshiftassignment">Save <i class="fa fa-save"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Manage Shift Assignment</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-5 col-sm-5 col-xs-12  pull-right top_search">
+                    <div class="input-group">
+                        <input id="txtGlobalSearch" type="text" class="form-control" placeholder="[Global Search]"
+                               data-bind="value: GlobalSearch, valueUpdate: 'afterkeydown', enterkey: GlobalSearchEnter.bind()" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-bind="click: GetAllShiftAssignmentData.bind()"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <form class="form-horizontal form-label-left">
+                    <table class="table jambo_table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 1%">#</th>
+                                <th style="width: 15%"> <a href="#" onclick="DataGrid.Sort('BuildingName')" class="BuildingName">Building Name</a> </th>
+                                <th style="width: 13%"> <a href="#" onclick="DataGrid.Sort('City')" class="City">City</a> </th>
+                                <th style="width: 15%"> <a href="#" onclick="DataGrid.Sort('GateName')" class="GateName">Gate Name</a></th>
+                                <th style="width: 13%"><a href="#" onclick="DataGrid.Sort('ShiftName')" class="ShiftName">Shift Name</a></th>
+                                <th style="width: 13%"><a href="#" onclick="DataGrid.Sort('UserName')" class="UserName">Security Name</a></th>
+                                <th style="width: 10%"><a href="#" onclick="DataGrid.Sort('strFromDate')" class="strFromDate">From Date</a></th>
+                                <th style="width: 10%"><a href="#" onclick="DataGrid.Sort('strToDate')" class="strToDate">To Date</a></th>
+                                <th style="width: 10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach:DataGrid.DataRows">
+                            <tr>
+                                <th scope="row" data-bind="text: $index() +1"></th>
+                                <td data-bind="text: BuildingName"></td>
+                                <td data-bind="text: City"></td>
+                                <td data-bind="text: GateName"></td>
+                                <td data-bind="text: ShiftName"></td>
+                                <td data-bind="text: UserName"></td>
+                                <td data-bind="text: strFromDate"></td>
+                                <td data-bind="text: strToDate"></td>
+                                <td style="padding:0px !important">
+                                    <a href="#" data-bind="click: EditShift.bind($data)" title="click here to view or edit record."><i class="fa fa-pencil"></i></a>
+                                    <a href="#myModal" data-toggle="modal" data-bind="click: DeleteShift.bind($data)" title="click here to delete record."><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr class="blank_row" data-bind="visible: (DataGrid.DataRows().length == 0)">
+                            <td colspan="10" style="text-align:center;">
+                                No data found.
+                            </td>
+                        </tr>
+                    </table>
+                    @Html.Partial("_Pager")
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="color:black">Delete Confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="color:black">Are you sure you want to delete this record?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-success" data-bind="click: DeleteConfirmed.bind()">Yes</button>
+                                    @*<a href="#" class="btn btn-s" data-bind="click: DeleteOrganization.bind($data)" title="click here to delete record."><i class="fa fa-trash-o"></i></a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

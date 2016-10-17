@@ -1,0 +1,199 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#" class="a-color">Administration</a></li>
+    <li><a href="#" class="a-color">Building</a></li>
+</ol>
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Create / Update Building</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content leftcontent">
+                <form class="form-horizontal form-label-left input_mask">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Organization <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control Fieldfocus" id="Org" data-bind="options: Organizations, optionsText: 'Name', optionsValue: 'Id', value: OrganizationId, optionsCaption: '-- Select Organization --'"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Building Name <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtBuildingName" type="text" class="form-control Fieldfocus" placeholder="[Building Name]" data-bind="value: BuildingName" maxlength="50" required="required" />
+                            <span class="fa fa-building favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            Email Address
+                            @*<span class="mandatoryField">*</span>*@
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtEmail" type="text" class="form-control Fieldfocus" maxlength="50" placeholder="[email@domain.com]" data-bind="value: EmailId" />
+                            <span class="fa fa-envelope favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact No: <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtContactNo" type="text" maxlength="15" class="form-control Fieldfocus" placeholder="[Contact Number]" data-bind="value: ContactNumber" />
+                            <span class="fa fa-phone favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fax: </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtFax" type="text" maxlength="20" class="form-control Fieldfocus" placeholder="[Fax]" maxlength="12" data-bind="value: FaxNumber" />
+                            <span class="fa fa-fax favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Website</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtWebsite" type="text" class="form-control Fieldfocus" maxlength="50" placeholder="[Website URL]" data-bind="value: WebSite.extend({ url: false })" />
+                            <span id="spnWebsite" class="validationMessage" style="display:none"></span>
+                            <span class="fa fa-globe favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="Country">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Country <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            
+                           
+                            <select class="form-control Fieldfocus" id="selectCountries"
+                                    data-bind="options: Countries, optionsText: 'Name', optionsValue: 'Id', value: CountryId, optionsCaption: '-- Select Country --', event:{ change: LoadStates.bind()}"></select>
+                            
+                            
+                             <span class="ErrorCountryd" style="display: none; color: red">This field is required.</span>
+                        </div>
+                    </div>
+                  
+                    <div class="form-group" id="state">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">State <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" id="state">
+                            <select class="form-control Fieldfocus" id="selectState"
+                                    data-bind="options: State, optionsText: 'Name', optionsValue: 'Id',  value: StateId, optionsCaption: '-- Select State --', event:{ change: ChangeState.bind()}"></select>
+
+                            <span class="State" style="display: none; color: red">This field is required.</span>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group" id="city">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">City <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control Fieldfocus" id="selectcity" data-bind="options: City, optionsText: 'Name', optionsValue: 'Id', value: CityId, optionsCaption: '-- Select City --',event:{change: InsertCity.bind()}"></select>
+                            <span class="City" style="display: none; color: red">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="dropcity" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Other<span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtcitydl" type="text" class="form-control Fieldfocus" maxlength="50" placeholder="[City]" data-bind="value: citydlltxt" /> @*data-bind="value: WebSite.extend({ url: false })"*@
+                            <span class="fa fa-globe favwhite form-control-feedback right" aria-hidden="true"></span>
+                            <span class="loginErrorcitydlltxt" style="display: none; color: red">This field is required.</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <textarea id="txtAddress" class="form-control Fieldfocus" rows="3" placeholder="[Contact Address]" style="resize: none;" maxlength="90" data-bind="value: Address"></textarea>
+                            <span class="fa fa-home favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Zip Code<span class="mandatoryField">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input id="txtPOBox" type="text" class="form-control Fieldfocus" placeholder="[Zip Code]" required="required" maxlength="6" data-bind="value:ZipCode" />
+                            <span class="fa fa-envelope-o favwhite form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary" data-bind="click: ResetBuilding.bind()">Reset <i class="fa fa-refresh"></i></button>
+                            <button type="button" class="btn btn-success" data-bind="click: SaveBuilding" id="btnSaveBuilding">Save <i class="fa fa-save"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Manage Building</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-5 col-sm-5 col-xs-12  pull-right top_search">
+                    <div class="input-group">
+                        <input id="txtGlobalSearch" type="text" class="form-control " placeholder="[Global Search]"
+                               data-bind="value: GlobalSearch, valueUpdate: 'afterkeydown', enterkey: GlobalSearchEnter.bind()" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-bind="click: GetAllBuildingData.bind()"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <form class="form-horizontal form-label-left">
+                    <table class="table jambo_table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 1%">#</th>
+                                <th style="width: 20%"> <a href="#" onclick="DataGrid.Sort('BuildingName')" class="BuildingName">Building Name</a> </th>
+                                <th style="width: 20%"> <a href="#" onclick="DataGrid.Sort('OrganizationName')" class="OrganizationName">Organization Name</a></th>
+                                <th style="width: 20%"><a href="#" onclick="DataGrid.Sort('Country')" class="Country">Country<i class="fa fa-chevron-down icons"></i></a></th>
+                                <th style="width: 27%"><a href="#" onclick="DataGrid.Sort('Address')" class="Address">Address</a></th>
+                                <th style="width: 12%"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach:DataGrid.DataRows">
+                            <tr>
+                                <th scope="row" data-bind="text: $index() +1"></th>
+                                <td data-bind="text: BuildingName"></td>
+                                <td data-bind="text: OrganizationName"></td>
+                                <td data-bind="text: Country"></td>
+                                <td data-bind="text: Address"></td>
+                                <td style="padding:0px !important">
+                                    <a href="#" class="" data-bind="click: EditBuilding.bind($data)" title="click here to view or edit record."><i class="fa fa-pencil"></i></a>
+                                    <a href="#myModal" data-toggle="modal" data-bind="click: DeleteBuilding.bind($data)" title="click here to delete record."><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr class="blank_row" data-bind="visible: (DataGrid.DataRows().length == 0)">
+                            <td colspan="10" style="text-align:center;">
+                                No data found.
+                            </td>
+                        </tr>
+                    </table>
+                    @Html.Partial("_Pager")
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="color:black">Delete Confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="color:black">Are you sure you want to delete this record?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-success" data-bind="click: DeleteConfirmed.bind()">Yes</button>
+                                    @*<a href="#" class="btn btn-s" data-bind="click: DeleteOrganization.bind($data)" title="click here to delete record."><i class="fa fa-trash-o"></i></a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
