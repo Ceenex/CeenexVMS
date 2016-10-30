@@ -71,8 +71,23 @@
         data.GateId = self.GateId();
         data.SecurityId = self.SecurityId();
         data.VisitorName = self.VisitorName();
-        data.checkin = $("#dateFromCheckIn").val();
-        data.checkout = $("#dateToCheckOut").val();
+     
+        var fromdate = '';
+        var toDate = '';
+
+        if ($('#dateFromCheckIn').val() != "") {
+            var from = $('#dateFromCheckIn').val().split('/');
+            fromdate = from[1] + '/' + from[0] + '/' + from[2];
+        }
+        if ($('#dateToCheckOut').val() != "") {
+            var TO = $('#dateToCheckOut').val().split('/');
+            toDate = TO[1] + '/' + TO[0] + '/' + TO[2];
+        }
+
+        data.checkin = fromdate;
+        data.checkout = toDate;
+
+
         //data.CheckIn = self.CheckIn();
         //data.CheckOut = self.CheckOut();
 
