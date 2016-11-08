@@ -21,10 +21,6 @@
     self.Address = ko.observable('').extend({ required: true });
     self.ZipCode = ko.observable('').extend({
         required: true,
-        pattern: {
-            message: "Invalid zip code.",
-            params: /^([0-9\(\)\/\+ \-\.]*)$/
-        },
         minLength: {
             params: 4,
             message: 'Enter minimum of 4-length number'

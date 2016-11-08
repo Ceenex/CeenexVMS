@@ -88,27 +88,32 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
 
         [Route("~/Api/DashBoard/DisplayAllShift")]
         [HttpPost]
-        public string DisplayAllShift(string globalSearch, int pageIndex, int pageSize, string sortField = "", string sortOrder = "ASC")
+        public async Task<string> DisplayAllShift(string globalSearch, int pageIndex, int pageSize, string sortField = "", string sortOrder = "ASC")
         {
-          
+
+            var user = (await _userService.GetAllAsync()).Where(x => x.Id == HttpContext.Current.User.Identity.GetUserId() && x.IsActive == true).FirstOrDefault();
+            int orgId = (user == null) ? 0 : (int)user.OrganizationId;
+
         
-            var ShiftDisplay = _genericService.ShiftDetails.GetAll().Where(x => x.IsActive == true && ((EntityFunctions.TruncateTime(x.ShiftDate) ==EntityFunctions.TruncateTime(DateTime.Now))
-               || (EntityFunctions.TruncateTime(x.ShiftDate) == EntityFunctions.TruncateTime(DateTime.Now) ))).ToList()
+            var ShiftDisplay = _genericService.ShiftDetails.GetAll().Where(x => x.IsActive == true 
+                && ((EntityFunctions.TruncateTime(x.ShiftDate) ==EntityFunctions.TruncateTime(DateTime.Now))
+                || (EntityFunctions.TruncateTime(x.ShiftDate) == EntityFunctions.TruncateTime(DateTime.Now) ))).ToList()
                 .Select(x => new ShiftAssignmentVM
                 {
                     UserId = x.SecurityID,
                     UserName = x.ApplicationUser.FullName,
                     BuildingId = x.Gates.BuildingId,
                     BuildingName = x.Gates.BuildingMaster.BuildingName,
+                    OrganizationId = x.Gates.BuildingMaster.OrganizationId,
                     GateId = x.GateID,
                     GateName = x.Gates.GateNumber,
                     ShitfId = x.ShiftID,
                     ShiftName = x.Shitfs.ShitfName + " (" + x.Shitfs.FromTime.ToString("hh:mm tt") + " - " + x.Shitfs.ToTime.ToString("hh:mm tt") + ")",
                     FromDate=x.ShiftDate,
-                   // ToDate = x.ShiftDate
+                })
+                .Where(x => x.FromDate.Date == DateTime.Now.Date && (orgId == 0 || x.OrganizationId == orgId)).AsQueryable();
 
 
-                }).ToList().Where(x => x.FromDate.Date == DateTime.Now.Date).ToList();
             var searchDetails = JsonConvert.DeserializeObject<SearchShiftReport>(globalSearch);
            
 
@@ -127,7 +132,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
             };
             int totalCount = 0;
             IList<ShiftAssignmentVM> result =
-            GenericSorterPager.GetSortedPagedList<ShiftAssignmentVM>(ShiftDisplay.AsQueryable(), paginationRequest, out totalCount);
+            GenericSorterPager.GetSortedPagedList<ShiftAssignmentVM>(ShiftDisplay, paginationRequest, out totalCount);
 
             var jsonData = JsonConvert.SerializeObject(result);
             return JsonConvert.SerializeObject(new { totalRows = totalCount, result = jsonData });

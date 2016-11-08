@@ -13,3 +13,10 @@
 /Evis.VMS.UI/obj/Debug
 /Evis.VMS.Utilities/bin/Debug
 /Evis.VMS.Utilities/obj/Debug
+/Evis.VMS.Business/bin/Release
+/Evis.VMS.Business/obj/Release
+/Evis.VMS.Data/bin/Release
+/Evis.VMS.Data/obj/Release
+/Evis.VMS.Data.Model/bin/Release
+/Evis.VMS.Data.Model/obj/Release
+/Evis.VMS.Utilities/bin/Release

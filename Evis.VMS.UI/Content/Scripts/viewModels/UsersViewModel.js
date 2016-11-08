@@ -28,8 +28,8 @@
             message: 'Enter minimum of 6-length number'
         },
         maxLength: {
-            params: 12,
-            message: 'Enter maximum of 12-length number'
+            params: 14,
+            message: 'Enter maximum of 14-length number'
         }
     });
 
