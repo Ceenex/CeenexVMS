@@ -32,32 +32,7 @@
         }
     });
 
-    setTimeout(function () {
 
-        if (typeOfCard != undefined) {
-            TypeOfCardValue = ko.observable(typeOfCard).extend({ required: true });
-        }
-
-        if (nationality != undefined) {
-            Nationality = ko.observable(nationality).extend({ required: true });
-        }
-
-        if (gender != undefined) {
-            Gender = ko.observable(gender).extend({ required: true });
-        }
-    }, 2000);
-
-    //self.ContactNo = ko.observable('').extend({
-    //    required: true,
-    //    pattern: {
-    //        message: 'Invalid Contact Number.',
-    //        params: /^([0-9\(\)\/\+ \-\.]*)$/
-    //    },
-    //    minLength: {
-    //        params: 10,
-    //        message:'Enter atleast 10 digits'
-    //    }
-    //});
     ContactAddress = ko.observable('');
     self.GlobalSearch = ko.observable('');
     self.IsInsert = ko.observable(true);
@@ -107,6 +82,10 @@
             self.Nationalities(ko.utils.arrayFilter(self.LookUpValues(), function (item) {
                 return item.LookUpType.TypeCode == "Nationalities";
             }));
+
+            self.Gender(gender);
+            self.TypeOfCardValue(typeOfCard);
+            self.Nationality(nationality);
         })
     }
 
@@ -373,7 +352,6 @@
             srcURL = '/images/VisitorImages/' + self.ImagePath();
         }
 
-
         $('#visitorOriginalSize').attr('src', srcURL);
         $('#visitorImageModal').modal('show');
     }
@@ -384,13 +362,8 @@
         //}
     }
 
-
-
-
-
     self.ViewImage = function () {
 
-        //debugger;
         var srcURL_1 = '';
         var srcURL_2 = '';
         var srcURL_3 = '';
@@ -407,19 +380,11 @@
             srcURL_3 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(2).attr('alt');
         }
 
-
-
         $('#originalSize_1').attr('src', srcURL_1);
         $('#originalSize_2').attr('src', srcURL_2);
         $('#originalSize_3').attr('src', srcURL_3);
         $('#imageModal').modal('show');
     }
-
-
-
-
-
-
 
     self.GetAllVisitor();
     self.LoadMasterData();
