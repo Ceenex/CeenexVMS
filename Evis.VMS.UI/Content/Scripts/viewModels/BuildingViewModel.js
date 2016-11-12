@@ -1,4 +1,6 @@
-﻿function BuildingViewModel() {
+﻿var otherId = 7000;
+
+function BuildingViewModel() {
     var self = this;
     var stateId = 0;
     var cityId = 0;
@@ -140,7 +142,7 @@
     self.LoadStates = function () {
 
 
-        if (self.CountryId() != 11) {
+        if (self.CountryId() != otherId) {
             if (self.CountryId() != undefined && self.CountryId() != 0) {
                 AjaxCall('/Api/Administration/GetAllStateOrCity?id=' + self.CountryId(), null, 'GET', function (data) {
 
@@ -178,7 +180,7 @@
     }
  //   citydlltxt
     self.InsertCity = function () {
-        if (self.CityId() == 11) {
+        if (self.CityId() == otherId) {
             $("#dropcity").show();
         }
         else {
@@ -291,7 +293,7 @@
             data.ContactNumber = self.ContactNumber(),
             data.FaxNumber = self.FaxNumber(),
             data.WebSite = self.WebSite();
-            data.CityId = self.CountryId == 11 ? null : self.CityId(),
+            data.CityId = self.CountryId == otherId ? null : self.CityId(),
             data.CountryId = self.CountryId(),
 
             data.StateId = self.StateId(),
@@ -351,7 +353,12 @@
             stateId = (tableItem.StateId);
             cityId = (tableItem.CityId);
 
-            if (tableItem.txtcity != null && tableItem.CityId == 11) {
+            //alert('tableItem.txtcity  ' + tableItem.txtcity);
+
+
+            if (tableItem.txtcity != null && tableItem.CityId == otherId) {
+
+                //alert(' coming inside ' +tableItem.CityId );
 
                 $("#city").show();
                 $("#dropcity").show();
@@ -368,7 +375,7 @@
 
 
             //state loadcode
-            if (self.CountryId() != 11) {
+            if (self.CountryId() != otherId) {
                 if (self.CountryId() != undefined && self.CountryId() != 0) {
                     AjaxCall('/Api/Administration/GetAllStateOrCity?id=' + self.CountryId(), null, 'GET', function (data) {
 

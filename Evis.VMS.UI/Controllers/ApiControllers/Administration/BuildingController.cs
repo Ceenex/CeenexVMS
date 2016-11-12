@@ -27,7 +27,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
     {
         IQueryable<BuildingVM> lstBuildingVM;
         LookUpValues city;
-
+        private const int CONST_OTHER_ID = 7000;
 
 
         [Route("~/Api/Administration/SaveBuilding")]
@@ -71,7 +71,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
                     obj.OtherCountry = (buildingMaster.CityId == null) ? buildingMaster.txtcountry.Trim() : null;
                     obj.OtherState = (buildingMaster.CityId == null) ? buildingMaster.txtstate.Trim() : null;
                     //  obj.OtherCity = (buildingMaster.CityId == null) ? buildingMaster.txtcity.Trim() : null;
-                    if (buildingMaster.CityId == 11)
+                    if (buildingMaster.CityId == CONST_OTHER_ID)
                     {
                         obj.OtherCity = buildingMaster.txtcity.Trim();
                     }
@@ -109,7 +109,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
                         existingOrg.OtherCountry = (buildingMaster.CityId == null) ? buildingMaster.txtcountry.Trim() : null;
                         existingOrg.OtherState = (buildingMaster.CityId == null) ? buildingMaster.txtstate.Trim() : null;
                         //    existingOrg.OtherCity = (buildingMaster.CityId == null) ? buildingMaster.txtcity.Trim() : null;
-                        if (buildingMaster.CityId == 11)
+                        if (buildingMaster.CityId == CONST_OTHER_ID)
                         {
                             existingOrg.OtherCity = buildingMaster.txtcity.Trim();
                         }
@@ -289,8 +289,9 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
         {
 
             IEnumerable<GeneralDropDownVM> result;
-            result = _genericService.LookUpValues.GetAll().Where(x => x.ParentId == Id && x.IsActive == true && x.LookUpType.IsActive == true || x.Id == 11)
-                             .Select(y => new GeneralDropDownVM { Id = y.Id, Name = y.LookUpValue });
+            result = _genericService.LookUpValues.GetAll()
+                .Where(x => x.ParentId == Id && x.IsActive == true && x.LookUpType.IsActive == true || x.Id == CONST_OTHER_ID)//7000 for Others option in cities
+                .Select(y => new GeneralDropDownVM { Id = y.Id, Name = y.LookUpValue });
 
             return result.OrderByDescending(x => x.Id);
 
