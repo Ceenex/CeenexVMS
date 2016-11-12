@@ -87,8 +87,13 @@ function ScanVisitorViewModel() {
             if (data.IDNumber != undefined) {
                 self.IdNumber(data.IDNumber);
             }
+
             if (data.DateOfBirth != undefined) {
-                self.DOB(data.DateOfBirth);
+                var regExDOB = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
+                if (regExDOB.test(data.DateOfBirth)) {
+                    self.DOB(data.DateOfBirth);
+                }
+
             }
             if (data.CompanyName != undefined) {
                 self.CompanyName(data.CompanyName);

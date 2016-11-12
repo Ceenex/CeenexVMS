@@ -32,7 +32,6 @@
         }
     });
 
-
     ContactAddress = ko.observable('');
     self.GlobalSearch = ko.observable('');
     self.IsInsert = ko.observable(true);
@@ -107,8 +106,6 @@
             data.Nationality = self.Nationality()
             data.ContactNo = self.ContactNo();
             data.CompanyName = self.CompanyName();
-
-
             data.ImagePath = $('#dropzoneImageForm .dz-image img').attr("img-name-unique");
             if (data.ImagePath == undefined) {
                 data.ImagePath = $('#dropzoneImageForm .dz-image img').attr("alt");
@@ -128,7 +125,6 @@
             if (data.IdentityImage3_Path == undefined) {
                 data.IdentityImage3_Path = $('.dz-image-preview img').eq(2).attr("alt");
             }
-
 
 
             data.ContactAddress = self.ContactAddress()
