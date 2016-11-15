@@ -30,7 +30,6 @@ function ScanVisitorViewModel() {
         data.push(thirdimg);
         ShowLoader();
         AjaxCall('/Api/Visitor/ScanImage', data, 'POST', function (data) {
-            
             if (data.Gender != undefined) {
                 var gender = data.Gender.trim().toLowerCase();
                 if (gender == "m" || gender == "male") {
@@ -51,7 +50,8 @@ function ScanVisitorViewModel() {
                     self.TypeOfCard('32');//Emirates
                 }
                 else if (typeOfCardVal.indexOf("license") != -1) {
-                    self.TypeOfCard('36');//Driving licence
+                    //self.TypeOfCard('36')
+                    self.TypeOfCard('33');//Driving licence 
                 }
                 else {
                     self.TypeOfCard('-1');
@@ -59,8 +59,6 @@ function ScanVisitorViewModel() {
                 self.TypeOfCardText(data.TypeOfCard);
 
             }
-
-          
                 if (data.Nationality != undefined) {
 
                 self.NationalityText(data.Nationality);
@@ -120,8 +118,6 @@ function ScanVisitorViewModel() {
             HideLoader();
         })
 
-
-        //self.PrepareData();
     }
 
     self.ResetImageData = function () {
@@ -143,12 +139,11 @@ function ScanVisitorViewModel() {
     }
 
     self.PrepareData = function () {
-       
         dataToSend =
             (self.VisitorName() + "&&" +
             self.Gender() + "&&" +
             self.Nationality() + "&&" +
-            self.DOB() + "&&   " +
+            self.DOB() + "&&" +
             self.TypeOfCard() + "&&" +
             self.IdNumber() + "&&" +
             self.Nationality() + "&&" +
@@ -156,10 +151,7 @@ function ScanVisitorViewModel() {
             self.EmailAddress() + "&&" +
             self.ContactNumber() + "&&" +
             self.IdentityImages());
-       
-        
     }
-
 
     self.ContinueRegistration = function () {
         self.PrepareData();

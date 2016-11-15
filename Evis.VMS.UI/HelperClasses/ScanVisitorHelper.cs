@@ -38,18 +38,18 @@ namespace Evis.VMS.UI.HelperClasses
 
             var extractedText = modiImage.Layout.Text.Replace(Environment.NewLine, "<br />").Trim(new char[] { '\\' });
             string[] resultSplitted = extractedText.Split('>');
-            if (objScannedData.Nationality != null)
-            {
-                var data = _genericSer.LookUpValues.GetAll().Where(x => x.LookUpValue == objScannedData.Nationality).FirstOrDefault();
-                if (data != null)
-                {
-                    objScannedData.NationalityId = data.Id;
-                }
-                else
-                {
-                    objScannedData.NationalityId = 38;
-                }
-            }
+            //if (objScannedData.Nationality != null)
+            //{
+            //    var data = _genericSer.LookUpValues.GetAll().Where(x => x.LookUpValue == objScannedData.Nationality).FirstOrDefault();
+            //    if (data != null)
+            //    {
+            //        objScannedData.NationalityId = data.Id;
+            //    }
+            //    else
+            //    {
+            //        objScannedData.NationalityId = 38;
+            //    }
+            //}
             if (extractedText.Contains("United Arab Emêrates") || extractedText.Contains("United Arab Emirates") 
                 || extractedText.Contains("Idenmy Card"))
             //Front page of emirates id card
@@ -68,6 +68,18 @@ namespace Evis.VMS.UI.HelperClasses
                 {
                     objScannedData.Nationality = resultSplitted[7].Replace("<br /", "").Replace("NaonahIy:", "").Replace("Nationality:", "").Replace(" ", "");
 
+                }
+                if (objScannedData.Nationality != null)
+                {
+                    var data = _genericSer.LookUpValues.GetAll().Where(x => x.LookUpValue == objScannedData.Nationality).FirstOrDefault();
+                    if (data != null)
+                    {
+                        objScannedData.NationalityId = data.Id;
+                    }
+                    else
+                    {
+                        objScannedData.NationalityId = 38;
+                    }
                 }
             }
             else if (extractedText.Contains("Date of Birth") || extractedText.Contains("Dale B.rlh"))

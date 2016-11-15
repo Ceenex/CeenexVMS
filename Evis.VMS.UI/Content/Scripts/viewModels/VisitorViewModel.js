@@ -1,7 +1,6 @@
 ﻿function VisitorViewModel(visitorName, gender, nationalityVal, dateOfBirth, typeOfCard, idNumber, nationalityVal, companyName, emailAddress,
     contactNumber, identityImages) {
 
-
     nationality = (nationalityVal != "" ? nationalityVal : undefined);
     typeOfCard = (typeOfCard != "" ? typeOfCard : undefined);
     gender = (gender != "" ? gender : undefined);
@@ -11,12 +10,19 @@
     EmailAddress = ko.observable(emailAddress).extend({
         pattern: {
             params: /^([\d\w-\.]+@([\d\w-]+\.)+[\w]{2,4})?$/,
-            message: "Enter a valid EmailID"
+            message: "Enter a valid Email Id"
         }
     });
 
     Gender = ko.observable(gender).extend({ required: true });
-    DOB = ko.observable(dateOfBirth).extend({ required: true });
+    DOB = ko.observable(dateOfBirth).extend({
+        required: true,
+        pattern: {
+            params: /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
+            message: "Enter a valid Date Of Birth"
+        }
+    });
+
     TypeOfCardValue = ko.observable(typeOfCard).extend({ required: true });
     IdNo = ko.observable(idNumber).extend({ required: true });
     Nationality = ko.observable(nationality).extend({ required: true });
@@ -63,7 +69,6 @@
     }
 
     self.LoadMasterData = function () {
-
         var lookUpTypes = [];
         lookUpTypes.push("Gender");
         lookUpTypes.push("TypeOfCards");
@@ -81,7 +86,6 @@
             self.Nationalities(ko.utils.arrayFilter(self.LookUpValues(), function (item) {
                 return item.LookUpType.TypeCode == "Nationalities";
             }));
-
             self.Gender(gender);
             self.TypeOfCardValue(typeOfCard);
             self.Nationality(nationality);
@@ -154,11 +158,9 @@
             })
         }
     }
-
     self.ResetVisitor = function () {
         ResetData();
     }
-
     self.ResetData = function () {
         $('#btnSave').html('Save <i class="fa fa-save"></i>');
         self.IsInsert(true);
@@ -197,7 +199,6 @@
     }
 
     self.EditVisitor = function (tableItem) {
-
         if (tableItem != undefined) {
 
             var d = new Date(tableItem.DOB),
@@ -293,7 +294,6 @@
     }
 
     self.LoadIdentityImage = function (identityImages) {
-        debugger;
         if (identityImages != "")
             {
             $("#viewimageunique").show();
