@@ -47,11 +47,13 @@ function ScanVisitorViewModel() {
             if (data.TypeOfCard != undefined) {
                 var typeOfCardVal = data.TypeOfCard.trim().toLowerCase();
                 if (typeOfCardVal.indexOf("emirates") != -1) {
-                    self.TypeOfCard('32');//Emirates
+                    //self.TypeOfCard('32');//Emirates
+                    self.TypeOfCard('4');
                 }
                 else if (typeOfCardVal.indexOf("license") != -1) {
                     //self.TypeOfCard('36')
-                    self.TypeOfCard('33');//Driving licence 
+                    //  self.TypeOfCard('33');//Driving licence 
+                    self.TypeOfCard('5')
                 }
                 else {
                     self.TypeOfCard('-1');
