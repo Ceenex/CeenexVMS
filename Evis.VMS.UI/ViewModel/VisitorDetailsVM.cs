@@ -50,5 +50,7 @@ namespace Evis.VMS.UI.ViewModel
 
         public DateTime CreatedOn { get; set; }
 
+        public string OrganizationName { get; set; }
+
     }
 }

@@ -30,6 +30,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
     public partial class AdministrationController
     {
 
+        
         IList<ShiftAssignmentVM> LSTShiftAssignmentVM;
         [Route("~/Api/ShiftAssignment/GetAllGates")]
         [HttpGet]
@@ -53,7 +54,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
 
         [Route("~/Api/ShiftAssignment/GetAllUsers")]
         [HttpGet]
-        public async Task<IEnumerable<DropDownVM>> GetAllUsers(int GateId)
+        public async Task<IEnumerable<DropDownVM>> GetAllUsers(int GateId, int BuildingId)
         {
             IEnumerable<DropDownVM> result;
             var user = (await _userService.GetAllAsync()).Where(x => x.Id == HttpContext.Current.User.Identity.GetUserId() && x.IsActive == true).FirstOrDefault();
@@ -64,14 +65,20 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
                 var getUsers = (await _userService.GetAllAsync()).Where(x => x.Organization.IsActive == true &&
                                (user == null || (user != null && x.OrganizationId == user.OrganizationId))).AsQueryable();
                 var getRoles = (await _applicationRoleService.GetAllAsync()).AsQueryable();
-                result = (from users in getUsers
-                          join roles in getRoles
-                          on users.Roles.First().RoleId equals roles.Id
-                          where (user == null || (user != null && user.OrganizationId == building.OrganizationId)) && roles.Name == "Security"
+
+                var organizationFromDb = _genericService.BuildingMaster.GetAll().Where(item => item.Id == BuildingId).FirstOrDefault();
+
+                result = (from userFromDb in getUsers
+                          join roleFromDb in getRoles
+                          on userFromDb.Roles.First().RoleId equals roleFromDb.Id
+                          where 
+                          ((user == null || (user != null && user.OrganizationId == building.OrganizationId))
+                           && (organizationFromDb == null || (organizationFromDb != null && organizationFromDb.OrganizationId == userFromDb.OrganizationId))
+                           && roleFromDb.Name == "Security")
                           select new DropDownVM
                           {
-                              Id = users.Id,
-                              Name = users.FullName
+                              Id = userFromDb.Id,
+                              Name = userFromDb.FullName
                           }).AsQueryable();
             }
             else
@@ -121,7 +128,7 @@ namespace Evis.VMS.UI.Controllers.ApiControllers
                             strFromDate = x.FromDate.ToString("dd/MM/yyyy"),
                             strToDate = x.ToDate.ToString("dd/MM/yyyy"),
                             Id = x.Id,
-                            City = (x.BuildingMaster.CityId == null) ? x.BuildingMaster.OtherCity : x.BuildingMaster.CityMaster.LookUpValue,
+                            City = (x.BuildingMaster.CityId == CONST_OTHER_ID) ? x.BuildingMaster.OtherCity : x.BuildingMaster.CityMaster.LookUpValue,
                             OtherCity = x.BuildingMaster.OtherCity
                         }).ToList();
 

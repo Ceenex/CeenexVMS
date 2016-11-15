@@ -54,7 +54,8 @@ namespace Evis.VMS.UI.HelperClasses
                                                             IdentityImage2_Path = item.IdentityImage2_Path,
                                                             IdentityImage3_Path = item.IdentityImage3_Path,
                                                             CompanyName = item.CompanyName,
-                                                            CreatedOn = item.CreatedDate
+                                                            CreatedOn = item.CreatedDate,
+                                                            OrganizationName = item.ApplicationUser.Organization.CompanyName
                                                         })
                                                         .AsQueryable();
 

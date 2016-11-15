@@ -70,8 +70,10 @@ function ShiftAssignmentViewModel() {
     self.Users = ko.observableArray();
     self.GetUsers = function () {
         // 
+      
         if (self.GateId() != undefined && self.GateId() != 0) {
-            AjaxCall('/Api/ShiftAssignment/GetAllUsers?GateId=' + self.GateId(), null, 'GET', function (data) {
+
+            AjaxCall('/Api/ShiftAssignment/GetAllUsers?GateId=' + self.GateId() + '&BuildingId=' + self.BuildingId(), null, 'GET', function (data) {
                 self.Users(new Object());
                 self.Users(data);
                 self.UserId(userId);

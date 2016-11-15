@@ -200,10 +200,11 @@
                         <thead>
                             <tr>
                                 <th style="width: 1%">#</th>
-                                <th style="width: 15%"> <a href="#" onclick="DataGrid.Sort('VisitorName')" class="VisitorName">Visitor Name</a> </th>
+                                <th style="width: 20%"> <a href="#" onclick="DataGrid.Sort('VisitorName')" class="VisitorName">Visitor Name</a> </th>
                                 <th style="width: 15%"> <a href="#" onclick="DataGrid.Sort('NationalityVal')" class="NationalityVal">Nationality</a></th>
-                                <th style="width: 13%"><a href="#" onclick="DataGrid.Sort('ContactNo')" class="ContactNo">Contact Number</a></th>
-                                <th style="width: 17%"></th>
+                                <th style="width: 15%"><a href="#" onclick="DataGrid.Sort('ContactNo')" class="ContactNo">Contact Number</a></th>
+                                <th style="width: 15%"><a href="#" onclick="DataGrid.Sort('OrganizationName')" class="OrganizationName">Organization</a></th>
+                                <th style="width: 20%"></th>
                             </tr>
                         </thead>
                         <tbody data-bind="foreach: DataGrid.DataRows">
@@ -212,6 +213,7 @@
                                 <td data-bind="text: VisitorName"></td>
                                 <td data-bind="text: NationalityVal"></td>
                                 <td data-bind="text: ContactNo"></td>
+                                <td data-bind="text: OrganizationName"></td>
                                 <td>
                                     <a href="#" class="btn  btn-s" data-bind="click: EditVisitor.bind($data)" title="click here to view or edit record."><i class="fa fa-pencil"></i></a>
                                     <a href="#" class="btn  btn-s" data-bind="click: DeleteVisitor.bind($data)" title="click here to delete record."><i class="fa fa-trash-o"></i></a>
