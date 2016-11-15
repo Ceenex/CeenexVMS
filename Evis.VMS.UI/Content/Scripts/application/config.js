@@ -42,8 +42,6 @@ ApplyCustomBinding = function (elementName) {
         case 'shiftmanagementdynamic':
             BindingViewModel("/Administration/_ShiftManagement_dynamic", ShiftManagementdynamicViewModell());
             break;
-            
-
         case 'myprofile':
             BindingViewModel("/Administration/_Myprofile", MyProfileViewModel());
             break;

@@ -82,7 +82,6 @@
         $('.loader-div').hide();
     }
     self.LoadImage = function () {
-        debugger;
         $('#avatar-modal').modal('hide');
         var output = document.getElementById('myImg');
         output.src = '#';
@@ -182,7 +181,6 @@
 }
 
 RefreshImage = function (Imagepath) {
-    debugger;
     
     setTimeout(function () {
         var d = new Date();

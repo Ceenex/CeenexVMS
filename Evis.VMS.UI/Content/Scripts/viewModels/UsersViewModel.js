@@ -155,7 +155,6 @@
 
     var editUser = new Object();
     self.EditUser = function (tableItem) {
-        debugger;
         if (tableItem != undefined) {
             editUser = tableItem;
            // $('#viewImageUnique').show();
