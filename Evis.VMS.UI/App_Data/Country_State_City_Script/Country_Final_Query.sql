@@ -1,3 +1,5 @@
+SET IDENTITY_INSERT [LookUpValues] ON
+
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1001,2, NULL,  'Afghanistan', 'Afghanistan', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1002,2, NULL,  'Albania', 'Albania', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1003,2, NULL,  'Algeria', 'Algeria', 1 )
@@ -244,3 +246,6 @@ INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Descri
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1244,2, NULL,  'Yugoslavia', 'Yugoslavia', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1245,2, NULL,  'Zambia', 'Zambia', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1246,2, NULL,  'Zimbabwe', 'Zimbabwe', 1 )
+
+
+SET IDENTITY_INSERT [LookUpValues] OFF

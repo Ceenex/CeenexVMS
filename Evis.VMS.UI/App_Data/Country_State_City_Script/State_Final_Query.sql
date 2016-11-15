@@ -1,3 +1,5 @@
+SET IDENTITY_INSERT [LookUpValues] ON
+
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1501, 3,1101,  'Andaman and Nicobar Islands', 'Andaman and Nicobar Islands', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1502, 3,1101,  'Andhra Pradesh', 'Andhra Pradesh', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(1503, 3,1101,  'Arunachal Pradesh', 'Arunachal Pradesh', 1 )
@@ -4118,3 +4120,6 @@ INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Descri
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(5618, 3,1246,  'Matabeleland North', 'Matabeleland North', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(5619, 3,1246,  'Matabeleland South', 'Matabeleland South', 1 )
 INSERT INTO [LookUpValues]([Id], [LookUpTypeId],[ParentId],[LookUpValue],[Description],[IsActive]) VALUES(5620, 3,1246,  'Midlands', 'Midlands', 1 )
+
+
+SET IDENTITY_INSERT [LookUpValues] OFF
