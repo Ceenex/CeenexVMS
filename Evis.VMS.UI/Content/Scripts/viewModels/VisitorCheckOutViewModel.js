@@ -28,7 +28,6 @@
         AjaxCall('/Api/VisitorManagement/GetVisitorCheckInHistory?visitorId=' + visitorId, null, 'POST', function (data) {
             $('.visitorImageUnique').attr('src', logoURL);
             self.logoURL(logoURL);
-            debugger;
             self.VisitorId(data.VisitorId);
             self.VisitorName(data.VisitorName);
             self.Gender(data.Gender);
