@@ -1,6 +1,6 @@
 ﻿function VisitorViewModel(visitorName, gender, nationalityVal, dateOfBirth, typeOfCard, idNumber, nationalityVal, companyName, emailAddress,
     contactNumber, identityImages) {
-
+    
     nationality = (nationalityVal != "" ? nationalityVal : undefined);
     typeOfCard = (typeOfCard != "" ? typeOfCard : undefined);
     gender = (gender != "" ? gender : undefined);
@@ -82,7 +82,6 @@
             self.TypeOfCards(ko.utils.arrayFilter(self.LookUpValues(), function (item) {
                 return item.LookUpType.TypeCode == "TypeOfCards";
             }));
-
             self.Nationalities(ko.utils.arrayFilter(self.LookUpValues(), function (item) {
                 return item.LookUpType.TypeCode == "Nationalities";
             }));
@@ -158,9 +157,11 @@
             })
         }
     }
+
     self.ResetVisitor = function () {
         ResetData();
     }
+
     self.ResetData = function () {
         $('#btnSave').html('Save <i class="fa fa-save"></i>');
         self.IsInsert(true);
@@ -179,7 +180,7 @@
         //identityImages = [];
         //self.LoadIdentityImage(identityImages);
         $('#viewVisitorImageUnique').hide();
-        ApplyCustomBinding('managevisitor');
+        ApplyCustomBinding('managevisitor_with_param');
     }
 
     self.DeleteVisitor = function (tableItem) {
@@ -189,7 +190,7 @@
                 if (result.Success) {
                     toastr.clear();
                     toastr.success('Visitor deleted successfully!!')
-                    ApplyCustomBinding('managevisitor');
+                    ApplyCustomBinding('managevisitor_with_param');
                 } else if (result.Success) {
                     toastr.clear();
                     toastr.warning("Visitor has dependency on other data. Please delete selected visitor's corresponding records first!!")
@@ -197,7 +198,7 @@
             });
         }
     }
-
+    
     self.EditVisitor = function (tableItem) {
         if (tableItem != undefined) {
 

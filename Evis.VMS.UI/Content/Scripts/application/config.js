@@ -55,9 +55,13 @@ ApplyCustomBinding = function (elementName) {
         case 'scanvisitor':
             BindingViewModel("/Visitor/_ScanVisitor", ScanVisitorViewModel());
             break;
-        case 'managevisitor':
+
+        case 'managevisitor_with_param':
             var scanVisitorViewModel = ScanVisitorViewModel();
             BindingViewModel("/Visitor/_ManageVisitorManually", VisitorViewModel(scanVisitorViewModel.split('&&')[0], scanVisitorViewModel.split('&&')[1], scanVisitorViewModel.split('&&')[2], scanVisitorViewModel.split('&&')[3], scanVisitorViewModel.split('&&')[4], scanVisitorViewModel.split('&&')[5], scanVisitorViewModel.split('&&')[6], scanVisitorViewModel.split('&&')[7], scanVisitorViewModel.split('&&')[8], scanVisitorViewModel.split('&&')[9], scanVisitorViewModel.split('&&')[10]));
+            break;
+        case 'managevisitor':
+            BindingViewModel("/Visitor/_ManageVisitorManually", VisitorViewModel());
             break;
         case 'visitorcheckin':
             BindingViewModel("/Visitor/_VisitorCheckIn", VisitorCheckInViewModel());
@@ -231,7 +235,7 @@ DashboardBindEvent = function () {
     });
 
     $('#lnkTotalVisitor').unbind('click').bind('click', function () {
-        ApplyCustomBinding('managevisitor');
+        ApplyCustomBinding('managevisitor_with_param');
     });
 
     $('#lnkBuilding').click(function () {

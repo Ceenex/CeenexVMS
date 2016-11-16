@@ -158,15 +158,21 @@ function ScanVisitorViewModel() {
     self.ContinueRegistration = function () {
         self.PrepareData();
         if (self.VisitorName() == ""
-            && self.Gender() == ''
-            && self.DOB() == ''
-            && self.TypeOfCard() == ''
-            && self.IdNumber() == ''
-            && self.Nationality() == '') {
-            toastr.clear();toastr.warning('No scanned image data available to proceed.');
+            && self.Gender() == ""
+            && self.DOB() == ""
+            && self.TypeOfCard() == ""
+            && self.IdNumber() == ""
+            &&self.CompanyName()==""
+            &&self.EmailAddress()==""
+            &&self.ContactNumber()==""
+            && self.Nationality() == "") {
+
+            toastr.clear();
+            toastr.warning('No scanned image data available to proceed.');
             return;
         }
-        ApplyCustomBinding('managevisitor');
+        ApplyCustomBinding('managevisitor_with_param');
     }
+
     return dataToSend;
 }
