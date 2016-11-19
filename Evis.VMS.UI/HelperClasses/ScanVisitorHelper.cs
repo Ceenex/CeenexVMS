@@ -149,7 +149,7 @@ namespace Evis.VMS.UI.HelperClasses
                     }
                 }
             }
-            objScannedData.CompanyName = "For Testing";
+            objScannedData.CompanyName = "";
 
             modiDocument.Close();
             return objScannedData;
