@@ -17,6 +17,7 @@ function ScanVisitorViewModel() {
     self.IdentityImages = ko.observable('');
 
     self.ReadImageData = function () {
+        self.IdentityImages = ko.observable('');
         if ($('.dz-filename').length == 0) {
             toastr.clear();toastr.warning('No image available to read text.');
             return;
@@ -39,20 +40,23 @@ function ScanVisitorViewModel() {
                     self.Gender(2);
                 }
                 else {
-                    self.TypeOfCard('-1');
+                  //  self.TypeOfCard('-1');
+
                 }
                 self.GenderText(data.Gender);
+            }
+            else
+            {
+                self.Gender('');
+                self.GenderText('');
             }
 
             if (data.TypeOfCard != undefined) {
                 var typeOfCardVal = data.TypeOfCard.trim().toLowerCase();
                 if (typeOfCardVal.indexOf("emirates") != -1) {
-                    //self.TypeOfCard('32');//Emirates
                     self.TypeOfCard('4');
                 }
                 else if (typeOfCardVal.indexOf("license") != -1) {
-                    //self.TypeOfCard('36')
-                    //  self.TypeOfCard('33');//Driving licence 
                     self.TypeOfCard('5')
                 }
                 else {
@@ -61,31 +65,34 @@ function ScanVisitorViewModel() {
                 self.TypeOfCardText(data.TypeOfCard);
 
             }
+            else
+            {
+                self.TypeOfCard('');
+                self.TypeOfCardText('');
+            }
                 if (data.Nationality != undefined) {
 
                 self.NationalityText(data.Nationality);
                 self.Nationality(data.NationalityId);
-            }
-            //if (data.Nationality != undefined) {
-            //    var nationalityVal = data.Nationality.trim().toLowerCase();
-            //    if (nationalityVal.indexOf("arab") != -1) {
-            //        self.Nationality('35');//UAE
-            //    }
-            //    else if (nationalityVal.indexOf("ind") != -1) {
-            //        self.Nationality('32');//Emirates
-            //    }
-            //    else {
-            //        self.Nationality('-1');
-            //       //self.TypeOfCard('-1');
-            //    }
-            //    self.NationalityText(data.Nationality);
-            //}
-
+                }
+            else
+                {
+                    self.Nationality('');
+                    self.NationalityText('');
+                }
             if (data.VisitorName != undefined) {
                 self.VisitorName(data.VisitorName);
             }
+            else
+            {
+                self.VisitorName('');
+            }
             if (data.IDNumber != undefined) {
                 self.IdNumber(data.IDNumber);
+            }
+            else
+            {
+                self.IdNumber('');
             }
 
             if (data.DateOfBirth != undefined) {
@@ -95,14 +102,30 @@ function ScanVisitorViewModel() {
                 }
 
             }
+            else
+            {
+                self.DOB('');
+            }
             if (data.CompanyName != undefined) {
                 self.CompanyName(data.CompanyName);
+            }
+            else
+            {
+                self.CompanyName('');
             }
             if (data.EmailAddress != undefined) {
                 self.EmailAddress(data.EmailAddress);
             }
+            else
+            {
+                self.EmailAddress('');
+            }
             if (data.ContactNumber != undefined) {
                 self.ContactNumber(data.ContactNumber);
+            }
+            else
+            {
+                self.ContactNumber('');
             }
             $('#txtFirstName').focus();
             //$('input[type=text]').removeAttr('readonly').removeClass('inputdisable');
