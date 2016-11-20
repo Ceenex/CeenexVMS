@@ -80,7 +80,7 @@ namespace Evis.VMS.UI.Controllers
                             }
 
                             var originalDirectory = new DirectoryInfo(directoryPath);
-                            fileWithPath = System.IO.Path.Combine(originalDirectory.ToString(), fName);
+                            fileWithPath = System.IO.Path.Combine(originalDirectory.ToString(), fName.Replace(@"/",@""));
                             var fileName1 = Path.GetFileName(fName);
                             var isExists = System.IO.File.Exists(fileWithPath);
 
