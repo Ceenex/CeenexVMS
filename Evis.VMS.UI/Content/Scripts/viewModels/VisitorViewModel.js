@@ -113,19 +113,19 @@
                 data.ImagePath = $('#dropzoneImageForm .dz-image img').attr("alt");
             }
 
-            data.IdentityImage1_Path = $('.dz-image-preview img').eq(0).attr("img-name-unique");
+            data.IdentityImage1_Path = $('#dropzoneForm .dz-image-preview img').eq(0).attr("img-name-unique");
             if (data.IdentityImage1_Path == undefined) {
-                data.IdentityImage1_Path = $('.dz-image-preview img').eq(0).attr("alt");
+                data.IdentityImage1_Path = $('#dropzoneForm .dz-image-preview img').eq(0).attr("alt");
             }
 
-            data.IdentityImage2_Path = $('.dz-image-preview img').eq(1).attr("img-name-unique");
+            data.IdentityImage2_Path = $('#dropzoneForm .dz-image-preview img').eq(1).attr("img-name-unique");
             if (data.IdentityImage2_Path == undefined) {
-                data.IdentityImage2_Path = $('.dz-image-preview img').eq(1).attr("alt");
+                data.IdentityImage2_Path = $('#dropzoneForm .dz-image-preview img').eq(1).attr("alt");
             }
 
-            data.IdentityImage3_Path = $('.dz-image-preview img').eq(2).attr("img-name-unique");
+            data.IdentityImage3_Path = $('#dropzoneForm .dz-image-preview img').eq(2).attr("img-name-unique");
             if (data.IdentityImage3_Path == undefined) {
-                data.IdentityImage3_Path = $('.dz-image-preview img').eq(2).attr("alt");
+                data.IdentityImage3_Path = $('#dropzoneForm .dz-image-preview img').eq(2).attr("alt");
             }
 
 
@@ -294,6 +294,7 @@
     }
 
     self.LoadIdentityImage = function (identityImages) {
+        //;
         if (identityImages != "")
             {
             $("#viewimageunique").show();
@@ -308,16 +309,16 @@
                 obj1.size = 1024;
                 MultipleImagePath.push(obj1);
             }
-
-            if (identityImages.split(',').length > 1) {
+           // if (identityImages.split(',').length > 1)
+            if (identityImages.split(',').length > 2) {
                 var obj2 = new Object();
                 obj2.fileName = identityImages.split(',')[1];
                 obj2.ImgURL = '/images/VisitorIdentityImages/' + identityImages.split(',')[1];
                 obj2.size = 1024;
                 MultipleImagePath.push(obj2);
             }
-
-            if (identityImages.split(',').length > 2) {
+           // if (identityImages.split(',').length > 2)
+            if (identityImages.split(',').length > 3) {
                 var obj3 = new Object();
                 obj3.fileName = identityImages.split(',')[2];
                 obj3.ImgURL = '/images/VisitorIdentityImages/' + identityImages.split(',')[2];
@@ -359,26 +360,53 @@
     }
 
     self.ViewImage = function () {
+       
+        //var srcURL_1 = '';
+        //var srcURL_2 = '';
+        //var srcURL_3 = '';
+        ////$('.dz-image img').attr('alt') != "User Image" &&
+        //if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        //    srcURL_1 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(0).attr('alt');
+        //}
 
+        //if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        //    srcURL_2 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(1).attr('alt');
+        //}
+
+        //if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        //    srcURL_3 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(2).attr('alt');
+        //}
+
+        //$('#originalSize_1').attr('src', srcURL_1);
+        //$('#originalSize_2').attr('src', srcURL_2);
+        //$('#originalSize_3').attr('src', srcURL_3);
+        //$('#imageModal').modal('show');
+     //   debugger;
         var srcURL_1 = '';
         var srcURL_2 = '';
         var srcURL_3 = '';
-        //$('.dz-image img').attr('alt') != "User Image" &&
-        if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        if ($('.dz-image img').eq(0).attr('alt') != undefined )
+        {
             srcURL_1 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(0).attr('alt');
+            
+            $('#originalSize_1').attr('src', srcURL_1);
+        $('#originalSize_1').show();
         }
-       
-        if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        if ($('.dz-image img').eq(2).attr('alt') != undefined && $('.dz-image img').eq(1).attr('alt') != 'VisitorImage')
+        {
             srcURL_2 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(1).attr('alt');
+            
+            $('#originalSize_2').attr('src', srcURL_2);
+        $('#originalSize_2').show();
         }
-
-        if ($('.dz-image img').attr('alt') != "" && $('.dz-image img').attr('alt') != "undefined") {
+        if ($('.dz-image img').eq(2).attr('alt') != undefined && $('.dz-image img').eq(2).attr('alt') != 'VisitorImage')
+        {
             srcURL_3 = '/images/VisitorIdentityImages/' + $('.dz-image img').eq(2).attr('alt');
-        }
+            
+            $('#originalSize_3').attr('src', srcURL_3);
+        $('#originalSize_3').show();
 
-        $('#originalSize_1').attr('src', srcURL_1);
-        $('#originalSize_2').attr('src', srcURL_2);
-        $('#originalSize_3').attr('src', srcURL_3);
+        }
         $('#imageModal').modal('show');
     }
 

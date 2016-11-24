@@ -38,9 +38,9 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="avatar-body">
-                                                        <img width="33%" id="originalSize_1" src="#" />
-                                                        <img width="33%" id="originalSize_2" src="#" />
-                                                        <img width="33%" id="originalSize_3" src="#" />
+                                                        <img width="33%" id="originalSize_1" src="#" style="display:none"/>
+                                                        <img width="33%" id="originalSize_2" src="#" style="display:none"/>
+                                                        <img width="33%" id="originalSize_3" src="#" style="display:none"/>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -247,7 +247,6 @@
     var dropZoneMultipleFiels;
 
     $(function () {
-
         dropZoneVisitorImage = new Dropzone("#dropzoneImageForm");
         dropZoneVisitorImage.maxFiles = 2;
         var imagePath = '/images/avatar.jpg';
@@ -288,6 +287,12 @@
         dropZoneVisitorImage.on('success', function (file) {
             //$('.dz-image').addClass('dz-message');
         });
+
+
+
+
+
+
 
         dropZoneMultipleFiels = new Dropzone("#dropzoneForm");
         dropZoneMultipleFiels.maxFiles = 2;
@@ -330,10 +335,10 @@
                         this.removeFile(this.files[0]);
                     }
 
-                    if (maxLengthExceeded) {
-                        toastr.clear();
-                        toastr.warning('Only 3 images can be uploaded.');
-                    }
+                    //if (maxLengthExceeded) {
+                    //    toastr.clear();
+                    //    toastr.warning('Only 3 images can be uploaded.');
+                    //}
 
                     var removeButton = Dropzone.createElement("<i class='fa fa-remove red' aria-hidden='true'></i>");
                     var _this = this;
